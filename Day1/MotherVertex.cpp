@@ -18,8 +18,6 @@ class Solution
 	int findMotherVertex(int V, vector<int>adj[])
 	{
 	    // Code hereint 
-	    
-	    
 	    for(int i=0;i<V;i++){
 	        int count=0;
 	        vector<bool> visited(V,false);

@@ -1,10 +1,10 @@
-class Solution
 {
 	public:
 	//Function to find the shortest distance of all the vertices
     //from the source vertex S.
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
+        
         // Code here
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
         vector<int> dist(V,INT_MAX);
@@ -18,20 +18,18 @@ class Solution
             auto i= pq.top();
             pq.pop();
             int node = i.second;
-            int d= i.first;
+            int d = i.first;
             visited[node]=true;
             
             for(auto v : adj[node]){
-                if(visited[v[0]]==false){
-                    if(dist[v[0]]> d + v[1]){
-                        dist[v[0]] = d +v[1];
-                        pq.push({dist[v[0]],v[0]});
-                    }
+    	    	int adjNode = v[0];
+    	    	int edgeWeight = v[1];
+                if(dist[adjNode] > d + edgeWeight){
+                    dist[adjNode] = d + edgeWeight;
+                    pq.push({dist[adjNode],adjNode});
                 }
-            }
-            
+            }   
         }
         return dist;
-        
     }
 };

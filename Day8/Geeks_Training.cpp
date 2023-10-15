@@ -63,3 +63,30 @@ public:
         
         return dp[n-1][3];
     }
+
+// Space Optimization
+
+int maximumPoints(vector<vector<int>>& points, int n) {
+        // Code here
+        vector<int> prev(4,0);
+        // Base case for 1st iteration
+        prev[0] = max(points[0][1], points[0][2]);
+        prev[1] = max(points[0][0], points[0][2]);
+        prev[2] = max(points[0][1], points[0][0]);
+        prev[3] = max(max(points[0][1], points[0][2]),points[0][0]);
+        
+        
+        for(int i=1;i<n;i++){
+            vector<int> temp(4,0);
+            for(int last=0;last<4;last++){
+                for(int j=0;j<3;j++){
+                    if(j!=last){
+                        temp[last] = max(temp[last], points[i][j] + prev[j]);
+                    }
+                }
+            }
+            prev = temp;
+        }
+        
+        return prev[3];
+    }

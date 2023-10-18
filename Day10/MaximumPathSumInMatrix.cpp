@@ -69,3 +69,39 @@ int maximumPath(int N, vector<vector<int>> Matrix)
         
         return maxi;
     }
+
+// Space Optimization
+
+int maximumPath(int N, vector<vector<int>> Matrix)
+    {
+        // code here
+        int maxi = -1e8;
+        
+        vector<int> prev(N,0);
+        
+        for(int i=0;i<N;i++) prev[i] = Matrix[0][i];
+        
+        for(int i=1;i<N;i++){
+            vector<int> curr(N,0);
+            for(int j=0;j<N;j++){
+                
+                int s = Matrix[i][j] + prev[j];
+                int ld = Matrix[i][j];
+                
+                if(j-1>=0) ld += prev[j-1];
+                else ld += -1e9;
+                
+                int rd = Matrix[i][j];
+                
+                if(j+1<N) rd +=  prev[j+1];
+                else rd += -1e9;
+                
+                curr[j] = max(s,max(ld,rd));
+            }
+            prev = curr;
+        }
+        
+        for(int i=0;i<N;i++) maxi = max(maxi, prev[i]);
+        
+        return maxi;
+    }

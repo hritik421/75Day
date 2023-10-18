@@ -39,3 +39,26 @@ int minimumPathSum(vector<vector<int>>& triangle, int n){
 
 	return dp[0][0];
 }
+
+// Space Optimization
+
+
+int minimumPathSum(vector<vector<int>>& triangle, int n){
+	// Write your code here.
+	vector<int>prev(n,0);
+
+	for(int j=0;j<n;j++) prev[j] = triangle[n-1][j];
+
+	for(int i=n-2;i>=0;i--){
+		vector<int> curr(n,0);
+		for(int j=i;j>=0;j--){
+			int bottom = triangle[i][j] + prev[j];
+			int diagnol = triangle[i][j] + prev[j+1];
+
+			curr[j] = min(bottom, diagnol);
+		}
+		prev = curr;
+	}
+
+	return prev[0];
+}

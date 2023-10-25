@@ -63,3 +63,36 @@ int equalPartition(int N, int arr[])
         
         return dp[N-1][sum/2];
     }
+
+// Space Optimization
+
+int equalPartition(int N, int arr[])
+    {
+        // code here
+        int sum = 0;
+        for(int i=0;i<N;i++) sum+=arr[i];
+        vector<int>prev(sum/2+1,0);
+        if(sum%2!=0) return 0;
+        int target = sum/2;
+        // Base condition
+        
+        prev[0] = 1;
+        if(arr[0]<sum/2) prev[arr[0]] = 1;
+        
+
+        for(int i=1;i<N;i++){
+            vector<int> curr(target+1,0);
+            for(int j=0;j<=target;j++){
+                // Copy-paste memoization logic
+                int notTake = prev[j];
+                int take = 0;
+                if(j-arr[i]>=0){
+                    take = prev[j-arr[i]];
+                }
+                curr[j] = take || notTake;
+            }
+            prev = curr;
+        }
+        
+        return prev[sum/2];
+    }

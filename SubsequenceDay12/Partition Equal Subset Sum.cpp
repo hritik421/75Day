@@ -50,7 +50,8 @@ int equalPartition(int N, int arr[])
         
 
         for(int i=1;i<N;i++){
-            for(int j=0;j<=target;j++){
+            // starting with 1 as for j=0 we already cover in base condition
+            for(int j=1;j<=target;j++){
                 // Copy-paste memoization logic
                 int notTake = dp[i-1][j];
                 int take = 0;
@@ -82,7 +83,7 @@ int equalPartition(int N, int arr[])
 
         for(int i=1;i<N;i++){
             vector<int> curr(target+1,0);
-            for(int j=0;j<=target;j++){
+            for(int j=1;j<=target;j++){
                 // Copy-paste memoization logic
                 int notTake = prev[j];
                 int take = 0;

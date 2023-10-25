@@ -35,3 +35,31 @@ public:
 
 // Tabulation
 
+int equalPartition(int N, int arr[])
+    {
+        // code here
+        int sum = 0;
+        for(int i=0;i<N;i++) sum+=arr[i];
+        vector<vector<int>> dp(N,vector<int>(sum/2+1,0));
+        if(sum%2!=0) return 0;
+        int target = sum/2;
+        // Base condition
+        
+        for(int i=0;i<N;i++) dp[i][0] = 1;
+        if(arr[0]<sum/2) dp[0][arr[0]] = 1;
+        
+
+        for(int i=1;i<N;i++){
+            for(int j=0;j<=target;j++){
+                // Copy-paste memoization logic
+                int notTake = dp[i-1][j];
+                int take = 0;
+                if(j-arr[i]>=0){
+                    take = dp[i-1][j-arr[i]];
+                }
+                dp[i][j] = take || notTake;
+            }
+        }
+        
+        return dp[N-1][sum/2];
+    }

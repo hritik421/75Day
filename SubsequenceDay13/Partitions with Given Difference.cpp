@@ -44,3 +44,83 @@ class Solution {
         return f(n-1,d,tar,arr,dp);
     }
 };
+
+// Tabulation
+
+int countPartitions(int n, int d, vector<int>& arr) {
+        // Mathematical stuff
+        // S1-S2=d
+        // S1+S2=sum
+        // 2S1=d+sum
+        // s1=(sum+d)/2;
+        // Now find count subset of s1
+        int sum = 0;
+        for(int i=0;i<n;i++) sum+=arr[i];
+        if((sum+d)%2) return 0;
+        int tar = ((sum+d)/2)%mod;
+        
+        vector<vector<int>> dp(n,vector<int>(tar+1,0));
+        
+        // Base condition
+        if(arr[0]==0) dp[0][0]=2;
+        else {
+            dp[0][0]=1;
+            if(arr[0]<=tar) dp[0][arr[0]]=1;
+        }
+        
+        // write for loop
+        for(int i=1;i<n;i++){
+            for(int t=0;t<=tar;t++){
+                // Copy Paste recursion logic here
+                int notPick = dp[i-1][t];
+                int pick = 0;
+                if(t-arr[i]>=0){
+                    pick = dp[i-1][t-arr[i]];
+                }
+                dp[i][t]=(pick+notPick)%mod;
+            }
+        }
+        
+        return dp[n-1][tar];
+    }
+
+// Space Optimization
+
+int countPartitions(int n, int d, vector<int>& arr) {
+        // Mathematical stuff
+        // S1-S2=d
+        // S1+S2=sum
+        // 2S1=d+sum
+        // s1=(sum+d)/2;
+        // Now find count subset of s1
+        int sum = 0;
+        for(int i=0;i<n;i++) sum+=arr[i];
+        if((sum+d)%2) return 0;
+        int tar = ((sum+d)/2)%mod;
+        
+        vector<int> prev(tar+1,0);
+        
+        // Base condition
+        if(arr[0]==0) prev[0]=2;
+        else {
+            prev[0]=1;
+            if(arr[0]<=tar) prev[arr[0]]=1;
+        }
+        
+        // write for loop
+        for(int i=1;i<n;i++){
+            vector<int> curr(tar+1,0);
+            for(int t=0;t<=tar;t++){
+                // Copy Paste recursion logic here
+                int notPick = prev[t];
+                int pick = 0;
+                if(t-arr[i]>=0){
+                    pick = prev[t-arr[i]];
+                }
+                curr[t]=(pick+notPick)%mod;
+            }
+            prev=curr;
+        }
+        
+        return prev[tar];
+    }

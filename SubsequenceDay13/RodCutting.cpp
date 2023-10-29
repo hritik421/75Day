@@ -45,3 +45,50 @@ private:
         
         return dp[n-1][n];
     }
+
+// Space Optimization
+int cutRod(int price[], int n) {
+        //code here
+        vector<int>prev(n+1,0);
+        
+        // Base case
+        for(int i=0;i<=n;i++) prev[i] = i*price[0];
+        
+        // Explore all possibilities
+        for(int ind=1;ind<n;ind++){
+            vector<int>curr(n+1,0);
+            for(int N=0;N<=n;N++){
+                int rodLength = ind+1;
+                int notPick = prev[N];
+                int pick = INT_MIN;
+                if(rodLength<=N) pick = price[ind] + curr[N-rodLength];
+                curr[N] = max(pick,notPick);
+            }
+            prev = curr;
+        }
+        
+        return prev[n];
+    }
+
+// Using only 1 vector/array
+
+int cutRod(int price[], int n) {
+        //code here
+        vector<int>prev(n+1,0);
+        
+        // Base case
+        for(int i=0;i<=n;i++) prev[i] = i*price[0];
+        
+        // Explore all possibilities
+        for(int ind=1;ind<n;ind++){
+            for(int N=0;N<=n;N++){
+                int rodLength = ind+1;
+                int notPick = prev[N];
+                int pick = INT_MIN;
+                if(rodLength<=N) pick = price[ind] + prev[N-rodLength];
+                prev[N] = max(pick,notPick);
+            }
+        }
+        
+        return prev[n];
+    }

@@ -28,3 +28,32 @@ int minimumElements(vector<int> &num, int x)
     if(ans>=1e9) return-1;
     return ans;
 }
+
+
+// Tabulation
+
+int minimumElements(vector<int> &num, int x)
+{
+    // Write your code here.
+    vector<vector<int>> dp(num.size(),vector<int>(x+1,0));
+
+    // Base case
+    for(int i=0;i<=x;i++) {
+        if(i%num[0]==0) dp[0][i] = i/num[0];
+        else dp[0][i] = 1e9;
+    }
+
+    for(int i=1;i<num.size();i++){
+        for(int j=0;j<=x;j++){
+            int notPick = 0 + dp[i-1][j];
+            int pick = INT_MAX;
+            if(j>=num[i]) pick = 1 + dp[i][j-num[i]];
+            dp[i][j] = min(pick,notPick);
+        }
+    }
+
+    int ans = dp[num.size()-1][x];
+
+    if(ans>=1e9) return-1;
+    return ans;
+}

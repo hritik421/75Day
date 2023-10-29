@@ -32,3 +32,82 @@ class Solution
     }
 };
 
+// Tabulation
+
+int knapSack(int W, int wt[], int val[], int n) 
+    { 
+       // Your code here
+       vector<vector<int>> dp(n,vector<int>(W+1,0));
+       
+       // Base case
+       for(int i=wt[0];i<=W;i++){
+           dp[0][i] = val[0];
+       }
+       
+       // Explore all possibilities
+       for(int i=1;i<n;i++){
+           for(int j=0;j<=W;j++){
+                int notPick = 0 + dp[i-1][j];
+                int pick = INT_MIN;
+                if(wt[i]<=j) pick = val[i] + dp[i-1][j-wt[i]];
+                dp[i][j] = max(pick,notPick);
+           }
+       }
+       
+       
+       return dp[n-1][W];
+    }
+
+// Space Optimization
+
+int knapSack(int W, int wt[], int val[], int n) 
+    { 
+       // Your code here
+       vector<int> prev(W+1,0);
+       
+       // Base case
+       for(int i=wt[0];i<=W;i++){
+           prev[i] = val[0];
+       }
+       
+       // Explore all possibilities
+       for(int i=1;i<n;i++){
+           vector<int> curr(W+1,0);
+           for(int j=0;j<=W;j++){
+                int notPick = 0 + prev[j];
+                int pick = INT_MIN;
+                if(wt[i]<=j) pick = val[i] + prev[j-wt[i]];
+                curr[j] = max(pick,notPick);
+           }
+           prev=curr;
+       }
+       
+       
+       return prev[W];
+    }
+
+// Using only one array
+
+int knapSack(int W, int wt[], int val[], int n) 
+    { 
+       // Your code here
+       vector<int> prev(W+1,0);
+       
+       // Base case
+       for(int i=wt[0];i<=W;i++){
+           prev[i] = val[0];
+       }
+       
+       // Explore all possibilities
+       for(int i=1;i<n;i++){
+           for(int j=W;j>=0;j--){
+                int notPick = 0 + prev[j];
+                int pick = INT_MIN;
+                if(wt[i]<=j) pick = val[i] + prev[j-wt[i]];
+                prev[j] = max(pick,notPick);
+           }
+       }
+       
+       
+       return prev[W];
+    }

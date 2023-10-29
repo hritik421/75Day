@@ -52,3 +52,30 @@ int knapSack(int N, int W, int val[], int wt[])
     }
     return dp[N-1][W];
 }
+
+// Tabulation
+
+int knapSack(int N, int W, int val[], int wt[])
+    {
+        // code here
+        vector<int> prev(W+1,0);
+        
+        // Base 
+        for(int w=0;w<=W;w++){
+            prev[w] = ((int)(w/wt[0]))*val[0];
+        }
+        
+        // Explore all possibilities
+        
+        for(int ind=1;ind<N;ind++){
+            vector<int> curr(W+1,0);
+            for(int w=0;w<=W;w++){
+                int notPick = 0 + prev[w];
+                int pick = 0;
+                if(w>=wt[ind]) pick = val[ind] + curr[w-wt[ind]];
+                curr[w]=max(pick,notPick);
+            }
+            prev = curr;
+        }
+        return prev[W];
+    }

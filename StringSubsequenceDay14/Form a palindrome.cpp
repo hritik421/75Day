@@ -27,3 +27,27 @@ public:
         return n - LongestCommonPalindrome(n-1,n-1,S,S2,dp);
         
     }
+
+// Tabulation
+
+  int findMinInsertions(string S){
+        // code here 
+        string S2 = S;
+        reverse(S2.begin(),S2.end());
+        int n = S.size();
+        vector<vector<int>> dp(n+1,vector<int>(n+1,0));
+        
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=n;j++){
+                if(S[i-1]==S2[j-1]){
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                }
+                else{
+                    dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+        
+        return n - dp[n][n];
+        
+    }

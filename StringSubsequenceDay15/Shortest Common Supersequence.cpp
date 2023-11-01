@@ -24,3 +24,54 @@
     }
 
 // Code for printing one of the possible supersequence
+// Very important logic to print Longest common subsequence as well
+
+#include <bits/stdc++.h> 
+string shortestSupersequence(string X, string Y)
+{
+	// Write your code here.
+	int m = X.size(), n = Y.size();
+	vector<vector<int>> dp(m+1,vector<int>(n+1,0));
+        
+        for(int i=1;i<=m;i++){
+            for(int j=1;j<=n;j++){
+                if(X[i-1]==Y[j-1]){
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                }
+                else{
+                    dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+
+	string res="";
+
+	while(m>0 && n>0){
+		if(X[m-1] == Y[n-1]){
+			res+=X[m-1];
+			m--;
+			n--;
+		}
+		else if(dp[m-1][n]>dp[m][n-1]){
+			res+=X[m-1];
+			m--;
+		}
+		else{
+			res+=Y[n-1];
+			n--;
+		}
+	}
+
+	while(m>0) {
+		res+=X[m-1];
+		m--;
+	}
+
+	while(n>0){
+		res+=Y[n-1];
+		n--;
+	}
+
+	reverse(res.begin(),res.end());
+    return res;
+}

@@ -31,3 +31,74 @@
       
       return f(n-1,m-1,S,T,dp);
     }
+
+// Tabulation
+
+int subsequenceCount(string S, string T)
+    {
+      //Your code here
+      int n = S.size(), m = T.size();
+      vector<vector<int>> dp(n+1,vector<int>(m+1,0));
+      
+      for(int i=0;i<=n;i++) dp[i][0] = 1;
+      
+      for(int i=1;i<=n;i++){
+          for(int j=1;j<=m;j++){
+              if(S[i-1]==T[j-1]){
+                  dp[i][j] = (dp[i-1][j-1] + dp[i-1][j])%mod;
+              }
+              else{
+                  dp[i][j] = (dp[i-1][j])%mod;
+              }
+          }
+      }
+      
+      return dp[n][m];
+    }
+
+// Space Optimization
+
+int subsequenceCount(string S, string T)
+    {
+      //Your code here
+      int n = S.size(), m = T.size();
+      vector<int>prev(m+1,0),curr(m+1,0);
+      
+      prev[0] = curr[0] = 1;
+      
+      for(int i=1;i<=n;i++){
+          for(int j=1;j<=m;j++){
+              if(S[i-1]==T[j-1]){
+                  curr[j] = (prev[j-1] + prev[j])%mod;
+              }
+              else{
+                  curr[j] = (prev[j])%mod;
+              }
+          }
+          prev = curr;
+      }
+      
+      return prev[m];
+    }
+
+// Only using 1 array
+
+int subsequenceCount(string S, string T)
+    {
+      //Your code here
+      int n = S.size(), m = T.size();
+      vector<int>prev(m+1,0);
+      
+      prev[0] = 1;
+      
+      for(int i=1;i<=n;i++){
+       // Imp iterating from right to left
+          for(int j=m;j>=1;j--){
+              if(S[i-1]==T[j-1]){
+                  prev[j] = (prev[j-1] + prev[j])%mod;
+              }
+          }
+      }
+      
+      return prev[m];
+    }

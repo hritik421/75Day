@@ -45,6 +45,87 @@ class Solution{
 
 // Tabulation
 
+int wildCard(string pattern,string str)
+    {
+        int n = str.size();
+        int m = pattern.size();
+        vector<vector<bool>> dp(n+1,vector<bool>(m+1,false));
+        
+        
+        //for(int i=1;i<=n;i++) dp[i][0] = false;
+        
+        // Base Condition
+        dp[0][0] = true;
+        for(int j=1;j<=m;j++){
+            bool flag = true;
+            for(int k=1;k<=j;k++){
+                if(pattern[k-1]!='*'){
+                    flag = false;
+                    break;
+                }
+            }
+            dp[0][j] = flag;
+        }
+        
+        // Iterate over all path
+        
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                  if(str[i-1]==pattern[j-1] || pattern[j-1]=='?') dp[i][j] = dp[i-1][j-1];
+                  else if(pattern[j-1]=='*') dp[i][j] = dp[i-1][j] || dp[i][j-1];
+                  else dp[i][j] = false;
+            }
+        }
+        
+        return dp[n][m];
+    }
 
+// Space Optimization
 
- 
+int wildCard(string pattern,string str)
+    {
+        int n = str.size();
+        int m = pattern.size();
+        vector<bool>prev(m+1,false);
+        
+        
+        //for(int i=1;i<=n;i++) dp[i][0] = false;
+        
+        // Base Condition
+        prev[0] = true;
+        for(int j=1;j<=m;j++){
+            bool flag = true;
+            for(int k=1;k<=j;k++){
+                if(pattern[k-1]!='*'){
+                    flag = false;
+                    break;
+                }
+            }
+            prev[j] = flag;
+        }
+        
+        // Iterate over all path
+        
+        for(int i=1;i<=n;i++){
+            vector<bool>curr(m+1,false);
+            for(int j=1;j<=m;j++){
+                  if(str[i-1]==pattern[j-1] || pattern[j-1]=='?') curr[j] = prev[j-1];
+                  else if(pattern[j-1]=='*') curr[j] = prev[j] || curr[j-1];
+                  else curr[j] = false;
+            }
+            prev = curr;
+        }
+        
+        return prev[m];
+    }
+
+// Important if there is change in indexing, means if i represent pattern and j reperesent str.
+// Then in line 110 we have to assign the value of curr[0] every time by using below logic
+bool flag = true;
+for(int k=1;k<=i;k++){
+    if(pattern[k-1]!='*'){
+        flag = false;
+        break;
+    }
+}
+curr[0] = flag;

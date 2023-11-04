@@ -1,3 +1,27 @@
+// Memoization
+
+long long f(int ind, int buy, vector<long long>&prices, vector<vector<long long>>& dp){
+        if(ind>=prices.size()) return 0;
+        
+        if(dp[ind][buy]!=-1) return dp[ind][buy];
+        
+        long long profit = 0;
+        if(buy){
+            profit = max(-prices[ind] + f(ind+1,0,prices,dp), f(ind+1,1,prices,dp) );
+        }
+        else{
+            profit = max( prices[ind] + f(ind+2,1,prices,dp), f(ind+1,0,prices,dp) );
+        }
+        
+        return dp[ind][buy] = profit;
+    }
+    public:
+    long long maximumProfit(vector<long long>&prices, int n) {
+        // Code here
+        vector<vector<long long>> dp(n,vector<long long>(2,-1));
+        return f(0,1,prices,dp);
+    }
+
 // Tabulation
 
 long long maximumProfit(vector<long long>&prices, int n) {

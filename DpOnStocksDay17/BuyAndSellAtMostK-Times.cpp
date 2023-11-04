@@ -21,3 +21,24 @@
         vector<vector<int>> dp(N+1,vector<int>(2*K+1,-1));
         return f(0,2*K,A,dp,N);
     }
+
+// Tabulation
+
+int maxProfit(int K, int N, int A[]) {
+        // code here
+        vector<vector<int>> dp(N+1,vector<int>(2*K+1,0));
+        
+        for(int ind=N-1;ind>=0;ind--){
+            for(int trans=1;trans<=2*K;trans++){
+                if(trans%2==0){
+                    dp[ind][trans] = max(-A[ind] + dp[ind+1][trans-1],
+                                                    0 + dp[ind+1][trans]);
+                }
+                else{
+                    dp[ind][trans] = max(A[ind] + dp[ind+1][trans-1],
+                                                    0 + dp[ind+1][trans]);
+                }
+            }
+        }
+        return dp[0][2*K];
+    }

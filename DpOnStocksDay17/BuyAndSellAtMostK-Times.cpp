@@ -42,3 +42,26 @@ int maxProfit(int K, int N, int A[]) {
         }
         return dp[0][2*K];
     }
+
+// Space Optimization
+
+int maxProfit(int K, int N, int A[]) {
+        // code here
+        vector<int>ahead(2*K+1,0);
+        
+        for(int ind=N-1;ind>=0;ind--){
+            vector<int>curr(2*K+1,0);
+            for(int trans=1;trans<=2*K;trans++){
+                if(trans%2==0){
+                    curr[trans] = max(-A[ind] + ahead[trans-1],
+                                                    0 + ahead[trans]);
+                }
+                else{
+                    curr[trans] = max(A[ind] + ahead[trans-1],
+                                                    0 + ahead[trans]);
+                }
+            }
+            ahead = curr;
+        }
+        return ahead[2*K];
+    }

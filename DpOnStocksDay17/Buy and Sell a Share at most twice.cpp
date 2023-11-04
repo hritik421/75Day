@@ -63,3 +63,32 @@ int maxProfit(vector<int>&price){
     
     return dp[0][1][2];
 }
+
+// Space Optimization
+
+int maxProfit(vector<int>&price){
+    //Write your code here..
+    int n = price.size();
+    vector<vector<int>>ahead(2, vector<int>(3,0));
+    vector<vector<int>>curr(2, vector<int>(3,0));
+    
+    // Iterate over all path
+    
+    for(int ind=n-1;ind>=0;ind--){
+        for(int buy=0;buy<2;buy++){
+            for(int cap=1;cap<3;cap++){
+                if(buy){
+                    curr[buy][cap] = max(-price[ind] + ahead[0][cap],
+                                            0 + ahead[1][cap]);
+                }
+                else{
+                    curr[buy][cap] = max(price[ind] + ahead[1][cap-1],
+                                        0 + ahead[0][cap]);
+                }
+            }
+        }
+        ahead = curr;
+    }
+    
+    return ahead[1][2];
+}

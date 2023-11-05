@@ -44,3 +44,25 @@ int longestSubsequence(int n, int a[])
        }
        return dp[0][-1+1];
     }
+
+// Sapce Optimized
+
+int longestSubsequence(int n, int a[])
+    {
+       // your code here
+       vector<int>next(n+1,0);
+       
+       for(int ind = n-1;ind>=0;ind--){
+           vector<int>curr(n+1,0);
+           for(int prev=ind-1;prev>=-1;prev--){
+                int len = next[prev+1];
+                if(prev==-1 || a[ind]>a[prev]){
+                    len = max(len,1 + next[ind+1]);
+                }
+                
+                curr[prev+1] = len;
+           }
+           next = curr;
+       }
+       return next[-1+1];
+    }

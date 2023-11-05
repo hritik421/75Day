@@ -22,3 +22,25 @@ int f(int ind, int prev, int a[], vector<vector<int>>& dp, int n){
        vector<vector<int>> dp(n,vector<int>(n+1,-1));
        return f(0,-1,a,dp,n);
     }
+
+// Tabulation
+
+int longestSubsequence(int n, int a[])
+    {
+       // your code here
+       vector<vector<int>> dp(n+1,vector<int>(n+1,0));
+       
+       for(int ind = n-1;ind>=0;ind--){
+               // Very imporatnt catch for 2nd for loop
+           for(int prev=ind-1;prev>=-1;prev--){
+                   // important catch of index shifting for 2nd parameter while fetching value from DP
+                int len = dp[ind+1][prev+1];
+                if(prev==-1 || a[ind]>a[prev]){
+                    len = max(len,1 + dp[ind+1][ind+1]);
+                }
+                
+                dp[ind][prev+1] = len;
+           }
+       }
+       return dp[0][-1+1];
+    }

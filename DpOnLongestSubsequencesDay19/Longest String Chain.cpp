@@ -38,7 +38,12 @@ class Solution {
         int maxi = 1;
         vector<int> dp(n,1);
         sort(words.begin(),words.end(),cmp);
-        
+      
+        // Alternative
+        // sort(words.begin(),words.end(),[](string& s1, string& s2) {
+        //                                 return s1.size() < s2.size();
+        //                             });
+      
         for(int i=1;i<n;i++){
             for(int j=0;j<i;j++){
                 if(compareString(words[i],words[j]) && dp[i]<1+dp[j]){

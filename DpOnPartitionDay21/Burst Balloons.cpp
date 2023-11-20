@@ -29,3 +29,32 @@ public:
         vector<vector<int>> dp(N+1,vector<int>(N+1,-1));
         return f(1,N,arr,dp);
     }
+
+
+// Tabulation
+
+int maxCoins(int N, vector<int> &arr) {
+        // code here
+        arr.insert(arr.begin(),1);
+        arr.push_back(1);
+        vector<vector<int>> dp(N+2,vector<int>(N+2,0));
+        
+        for(int i=N;i>=1;i--){
+            for(int j=1;j<=N;j++){
+                
+                // Base conditiom
+                if(i>j) continue;
+                
+                int maxi = INT_MIN;
+        
+                for(int ind=i;ind<=j;ind++){
+                    int cost = arr[i-1]*arr[ind]*arr[j+1] + dp[i][ind-1] + dp[ind+1][j];
+                    maxi = max(cost,maxi);
+                }
+                
+                dp[i][j] = maxi;
+            }
+        }
+        
+        return dp[1][N];
+    }

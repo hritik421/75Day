@@ -40,3 +40,31 @@ public:
         // -1 we are doing because it do partition in the end. for eg: A|B|C| after c vaala minus kr rhe hai
         return f(0,n,str,dp) - 1;
     }
+
+// Tabulation
+
+int palindromicPartition(string str)
+    {
+        // code here
+        int n = str.size();
+        vector<int> dp(n+1,0);
+        
+        // Base Case
+        dp[n]=0;
+        
+        for(int i=n-1;i>=0;i--){
+            int ans = INT_MAX;
+        
+            for(int j=i;j<n;j++){
+                if(isPalindrome(i,j,str)){
+                    int cost = 1 + dp[j+1];
+                    ans = min(cost,ans);
+                }
+            }
+            
+            dp[i] = ans;
+        }
+        
+        // -1 we are doing because it do partition in the end. for eg: A|B|C| after c vaala minus kr rhe hai
+        return dp[0] - 1;
+    }

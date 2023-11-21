@@ -18,11 +18,34 @@
             maxAns = max(maxAns,sum);
         }
         
-        dp[i] = maxAns;
+        return dp[i] = maxAns;
     }
     public:
     int solve(int n, int k, vector<int>& arr){
         // Code here
         vector<int> dp(n,-1);
         return f(0,n,k,arr,dp);
+    }
+
+// Tabulation
+
+int solve(int n, int k, vector<int>& arr){
+        // Code here
+        vector<int> dp(n+1,0);
+        
+        for(int i=n-1;i>=0;i--){
+            int len=0;
+            int maxi=INT_MIN, maxAns = INT_MIN;
+            
+            for(int j=i;j<min(n,i+k);j++){
+                len++;
+                maxi = max(maxi,arr[j]);
+                int sum = len*maxi + dp[j+1];
+                maxAns = max(maxAns,sum);
+            }
+            
+            dp[i] = maxAns;
+        }
+        
+        return dp[0];
     }

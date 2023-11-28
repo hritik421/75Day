@@ -17,7 +17,10 @@ class Solution
         
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
-                if(grid[i][j]==1) q.push({i,j});
+                if(grid[i][j]==1) {
+                    q.push({i,j});
+                    break;
+                }
             }
         }
         
@@ -26,7 +29,6 @@ class Solution
             int j= q.front().second;
             q.pop();
             
-            if(grid[i][j]==2) return true;
             for(int k=0;k<4;k++){
                 int n_x= i+ dx[k];
                 int n_y= j+ dy[k];

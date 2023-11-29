@@ -3,8 +3,7 @@
 // You are given the source vertex S and You to Find the shortest distance of all the vertex's from the source vertex S.
 // You have to return a list of integers denoting shortest distance between each node and Source vertex S.
  
-
-Note: The Graph doesn't contain any negative weight cycle.
+// Note: The Graph doesn't contain any negative weight cycle.
 
 {
 	public:

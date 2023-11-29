@@ -1,3 +1,6 @@
+// Given a Directed Graph having V nodes numbered from 0 to V-1, and E directed edges. Given two nodes, source and destination, count the number of ways or paths between these two vertices in the directed graph. These paths should not contain any cycle.
+// Note: Graph doesn't contain multiple edges, self-loop, and cycles.
+
 class Solution {
   public:
     // Function to count paths between two vertices in a directed graph.

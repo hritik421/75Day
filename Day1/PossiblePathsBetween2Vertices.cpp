@@ -20,3 +20,19 @@ class Solution {
         return count;
     }
 };
+
+// Backtracking logic
+
+visited[src] = true;
+    if (src == dst) {
+        path_count++;
+    }
+    // ...otherwise recurse into all neighbours...
+    else {
+        for (auto neighbour : m_neighbours[src]) {
+            if (!visited[neighbour])
+                path_counter(neighbour, dst, path_count,
+                             visited);
+        }
+    }
+    visited[src] = false;

@@ -10,7 +10,7 @@ class Solution
         for(int nbr:adj[src]){
             
             // We don't want the DFS traversal to consider the edge (c, d) while exploring other paths in the graph.
-            if(nbr==d && src==c) continue;
+            if((nbr==d && src==c) || (nbr==c && src==d)) continue;
             if(!vis[nbr]){
                 dfs(nbr,adj,c,d,vis);
             }

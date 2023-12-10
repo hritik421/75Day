@@ -1,5 +1,6 @@
 // STL way to use
 int ind = lower_bound(arr.begin(),arr.end(),n) - arr.begin();
+int und = upper_bound(arr.begin(),arr.end(),n) - arr.begin();
 
 
 // implementation
@@ -10,6 +11,7 @@ int lowerBound(vector<int> arr, int n, int x) {
 
 	while(low<=high){
 		int mid = low + (high-low)/2;
+		// for upper bound just remove equalto sign
 		if(arr[mid]>=x){
 			ans = mid;
 			high=mid-1;

@@ -1,3 +1,22 @@
+// You are given a graph with n vertices and m edges.
+
+// You can remove one edge from anywhere and add that edge between any two vertices in one operation.
+
+// Find the minimum number of operations that will be required to make the graph connected.
+
+// If it is not possible to make the graph connected, return -1.
+
+// Input:
+// n=6
+// m=5
+// Edge=[ [0,1] , [0,2] , [0,3] , [1,2] , [1,3] ]
+
+// Output:
+// 2
+
+// Explanation:
+// Remove edge between (1,2) and(0,3) and add edge between (1,4) and (3,5)
+
 // User function Template for C++
 class DisjointSet{
     public:

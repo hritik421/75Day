@@ -1,4 +1,5 @@
 Link to Problem: https://atcoder.jp/contests/dp/tasks/dp_b
+https://www.codingninjas.com/studio/problems/frog-jump_3621012
 
 class Solution {
   private:
@@ -34,3 +35,19 @@ class Solution {
         return dp[n-1];
     }
 };
+
+
+Link to Problem: https://atcoder.jp/contests/dp/tasks/dp_b
+
+#include <bits/stdc++.h> 
+int dp(int n,vector<int> &heights, vector<int> &dip){
+    if (n==0) return 0;
+    if(dip[n]!=-1) return dip[n];
+    int points = INT_MAX;
+    for(int i=1;i<=2;i++){
+        if(n-i>=0){
+            points = min (points,abs(heights[n]-heights[n-i]) + dp(n-i,heights,dip));
+        }
+    }
+    return dip[n] = points;
+}

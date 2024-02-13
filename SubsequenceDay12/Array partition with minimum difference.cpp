@@ -1,3 +1,4 @@
+// https://www.codingninjas.com/studio/problems/partition-a-set-into-two-subsets-such-that-the-difference-of-subset-sums-is-minimum_842494
 // Space optimized
 
 int minSubsetSumDifference(vector<int>& arr, int n)

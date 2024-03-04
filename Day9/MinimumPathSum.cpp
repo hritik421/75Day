@@ -1,18 +1,18 @@
-// Problem Link: https://www.codingninjas.com/studio/problems/minimum-path-sum_985349
-// Ninjaland is a country in the shape of a 2-Dimensional grid 'GRID', with 'N' rows and 'M' columns. Each point in the grid has some cost
-// associated with it.
+/*Problem Link: https://www.codingninjas.com/studio/problems/minimum-path-sum_985349
+Ninjaland is a country in the shape of a 2-Dimensional grid 'GRID', with 'N' rows and 'M' columns. Each point in the grid has some cost
+associated with it.
 
-// Find a path from top left i.e. (0, 0) to the bottom right i.e. ('N' - 1, 'M' - 1) which minimizes the sum of the cost of all the 
-// numbers along the path. You need to tell the minimum sum of that path.
+Find a path from top left i.e. (0, 0) to the bottom right i.e. ('N' - 1, 'M' - 1) which minimizes the sum of the cost of all the 
+numbers along the path. You need to tell the minimum sum of that path.
 
-// Note:
-// You can only move down or right at any point in time.
+Note:
+You can only move down or right at any point in time.
 
-// 1 2 3
-// 4 5 4
-// 7 5 9
+1 2 3
+4 5 4
+7 5 9
 
-// O/P: 19
+O/P: 19 */
 
 // Memoization
 

@@ -29,6 +29,8 @@ public:
         // code here
         int maxi = -1e8;
         vector<vector<int>> dp(N, vector<int>(N,-1));
+        // Here we cannot add this iteration inside our DP as we did in last question (Geeks Training). In Previous there was similar
+        // condition for picking 1st and in below recursion steps
         for(int i=0;i<N;i++){
             maxi = max(maxi, f(N-1,i,N,Matrix,dp));
         }

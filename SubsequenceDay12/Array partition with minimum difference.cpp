@@ -1,8 +1,14 @@
-// https://www.codingninjas.com/studio/problems/partition-a-set-into-two-subsets-such-that-the-difference-of-subset-sums-is-minimum_842494
-// Space optimized
+/*
+https://www.codingninjas.com/studio/problems/partition-a-set-into-two-subsets-such-that-the-difference-of-subset-sums-is-minimum_842494
+Space optimized
 
-// Logic is this in tabulation last row of dp array tell all the possible value from 0 to target. So by checking for true values we can 
-// find the minimum absolute difference.
+You are given an array 'arr' containing 'n' non-negative integers.
+Your task is to partition this array into two subsets such that the absolute difference between subset sums is minimum.
+You just need to find the minimum absolute difference considering any valid division of the array elements.
+
+Logic is this in tabulation last row of dp array tell all the possible value from 0 to target. So by checking for true values we can 
+find the minimum absolute difference.
+*/
 
 int minSubsetSumDifference(vector<int>& arr, int n)
 {

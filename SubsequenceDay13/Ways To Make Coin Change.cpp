@@ -1,5 +1,7 @@
 // Coding Ninja question - https://www.codingninjas.com/studio/problems/ways-to-make-coin-change_630471?source=youtube&campaign=striver_dp_videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_dp_videos&leftPanelTab=0
-
+//You are given an infinite supply of coins of each of denominations D = {D0, D1, D2, D3, ...... Dn-1}. 
+//You need to figure out the total number of ways W, in which you can make a change for value V using coins of denominations from D. 
+//Print 0, if a change isn't possible.
 // NOTE: In this question order is important. if order is not there then we have to use loop for iterating over coins array
 
 // Memoization

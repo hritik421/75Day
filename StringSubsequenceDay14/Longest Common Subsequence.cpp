@@ -36,7 +36,8 @@ int lcs(int n, int m, string s1, string s2)
         
         for(int i=1;i<=n;i++){
             for(int j=1;j<=m;j++){
-                // We have shifted dp 1 position so s1[i-1] is s[i]
+                // because of this if(n<0 || m<0) return 0; We have shifted dp 1 position to handle -ve index so s1[i-1] is s[i]
+                // We can do this without shifting as well but writting code is bit tricky
                 if(s1[i-1]==s2[j-1]) dp[i][j] =  1 + dp[i-1][j-1];
                 else dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
             }

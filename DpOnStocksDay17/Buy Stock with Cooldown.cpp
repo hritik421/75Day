@@ -1,3 +1,6 @@
+// You are given a list of stock prices of size 'n' called ‘prices’, where ‘prices[i]’ represents the price on ‘i’th day.
+// Your task is to calculate the maximum profit you can earn by trading stocks if you can only hold one stock at a time.
+// After you sell your stock on the ‘i’th day, you can only buy another stock on ‘i + 2’ th day or later.
 // Memoization
 
 long long f(int ind, int buy, vector<long long>&prices, vector<vector<long long>>& dp){

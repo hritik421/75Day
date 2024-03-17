@@ -1,3 +1,7 @@
+// You are Harshad Mehta’s friend. He told you the price of a particular stock for the next ‘n’ days.
+// You are given an array ‘prices’ which such that ‘prices[i]’ denotes the price of the stock on the ith day.
+// You don't want to do more than 2 transactions. Find the maximum profit that you can earn from these transactions.
+
 // Memoization
 
 int f(int ind, int buy, vector<int>& price, vector<vector<vector<int>>>& dp, int n, int cap){

@@ -46,3 +46,44 @@ int minSubsetSumDifference(vector<int>& arr, int n)
         }
         return ans;
 }
+
+// for memoization need to call dp method for all target:
+#include <bits/stdc++.h>
+int solveDp(vector<int>& arr, int n, int tar, vector<vector<int>>& dp)
+{
+    if(n==0) return tar == arr[0];
+    if(tar==0) return 1;
+
+    if (dp[n][tar]!=-1) return dp[n][tar];
+
+    bool pick = tar>=arr[n] ? solveDp(arr, n-1, tar-arr[n], dp): 0;
+    bool notPick = solveDp(arr, n-1, tar, dp);
+
+    return dp[n][tar] = pick || notPick;
+}
+
+int minSubsetSumDifference(vector<int>& arr, int n)
+{
+	// Write your code here.
+    int sum = 0;
+    for(int num: arr) sum+= num;
+
+    int tar = sum/2 + 1;
+
+    vector<vector<int>> dp(arr.size(), vector<int>(tar+1, -1));
+
+    for(int i=1;i<=tar;i++) solveDp(arr, n-1, i, dp);
+
+    int res = INT_MAX;
+
+    for(int i=0;i<=tar;i++){
+        if(dp[n-1][i]==1){
+            res = min(res, abs(sum-2*i));
+        }
+    }
+
+    return res;
+}
+
+
+

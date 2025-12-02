@@ -1,0 +1,32 @@
+In Grid question of DP,
+Observation:
+1. if position is fixed, like ninja start from this position try to solve the question by starting from that position only 
+2. for finding overlap position take help of look di -1 ---> +1 and then dj -1 ---> +1
+3. if no overlap then directly call dp for all path top, bottom, diagonal etc.
+4. for base case, chatgpt please help
+
+
+Chatgpt if my observation is incorrect or missing some point please.
+📌 11 Patterns of Grid DP:
+
+Single-path DP (right/down)
+
+Blocked grid DP
+
+Diagonal movement DP
+
+DFS + memo for free movement
+
+Two-agent grid DP (3D DP)
+
+Prefix-sum grid DP
+
+Counting paths DP
+
+Bitmask DP on grid rows
+
+Max-sum submatrix DP (2D Kadane)
+
+Island DP (component DP)
+
+Grid DP + BFS (shortest path)

@@ -8,7 +8,7 @@ private:
     int f(int arr[],int n, int tar, vector<vector<int>>& dp){
         if(tar<0) return 0;
         if(n==0){
-            if(tar==0 && arr[n]==0) return 2;
+            if(tar==0 && arr[n]==0) return 2; // for both pick and notPick
             if(tar==0 || tar == arr[n]) return 1;
             return 0;
         }

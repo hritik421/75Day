@@ -20,7 +20,9 @@ private:
         if(dp[i][j]!=-1) return dp[i][j];
         
         int ans=INT_MAX;
-        for(int k=i;k<j;k++){
+        for(int k=i;k<j;k++){ 
+            // arr[i-1], arr[k], arr[j] define the dimensions used in multiplying the result of left part (i..k) with right part (k+1..j).
+            // Only 'k' changes; i and j fix the outer dimensions.
             int temp = arr[i-1]*arr[k]*arr[j] + f(i,k,arr,dp) + f(k+1,j,arr,dp);
             ans = min(ans,temp);
         }

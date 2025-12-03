@@ -16,6 +16,7 @@
 
 private:
     int f(int i, int j, int arr[], vector<vector<int>>& dp){
+        //Only one matrix → cannot multiply → cost = 0
         if(i==j) return 0;
         if(dp[i][j]!=-1) return dp[i][j];
         

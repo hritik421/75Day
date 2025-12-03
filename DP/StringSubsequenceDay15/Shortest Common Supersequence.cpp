@@ -25,6 +25,23 @@
 
 // Code for printing one of the possible supersequence
 // Very important logic to print Longest common subsequence as well
+.
+
+// 🔥 Steps to Print the Shortest Common Supersequence
+
+// Build the LCS table using DP
+
+// Start from dp[m][n] and backtrack
+
+// While backtracking:
+
+// If characters match → include that character once in result
+
+// If not, move in the direction of the bigger dp value (dp[i-1][j] vs dp[i][j-1])
+
+// After backtracking, append the leftover characters of X or Y
+
+// Reverse the result (because backtracking builds the string backwards)
 
 #include <bits/stdc++.h> 
 string shortestSupersequence(string X, string Y)

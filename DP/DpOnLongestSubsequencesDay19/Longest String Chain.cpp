@@ -37,6 +37,7 @@ class Solution {
         // Code here
         int maxi = 1;
         vector<int> dp(n,1);
+        // to get the smallest string in 1st position
         sort(words.begin(),words.end(),cmp);
       
         // Alternative

@@ -37,6 +37,13 @@ class Solution {
         // Now find count subset of s1
         int sum = 0;
         for(int i=0;i<n;i++) sum+=arr[i];
+      
+        // If (sum + d) is odd, then (sum + d) / 2 is not an integer, so:
+        // S1 cannot be an integer sum
+        // No subset can have fractional sum
+        // Therefore, no valid partition exists
+        // So we must return 0.
+      
         if((sum+d)%2) return 0;
         int tar = ((sum+d)/2)%mod;
         

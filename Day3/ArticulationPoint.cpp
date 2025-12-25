@@ -1,5 +1,7 @@
 //User function Template for C++
-
+//The DFS root is an articulation point iff:
+//It has more than one DFS child
+// Different DFS children of root are in different connected components once root is removed.
 class Solution {
     private:
     int timer = 1;

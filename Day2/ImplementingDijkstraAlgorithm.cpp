@@ -27,7 +27,10 @@
             int node = i.second;
             int d = i.first;
             visited[node]=true;
-            
+			
+            // Most Imp check, it can be ask in interview
+            if(dist[node] < d) continue;
+			
             for(auto v : adj[node]){
     	    	int adjNode = v[0];
     	    	int edgeWeight = v[1];
@@ -37,6 +40,51 @@
                 }
             }   
         }
+        return dist;
+    }
+};
+
+class Solution {
+  public:
+    vector<int> dijkstra(int V, vector<vector<int>> &edges, int src) {
+        // Code here
+        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+        vector<int> dist(V, INT_MAX);
+        
+        vector<vector<int>> adj[V];
+        vector<bool> vis(V, false);
+        for (auto &e : edges) {
+            int u = e[0];
+            int v = e[1];
+            int w = e[2];
+        
+            adj[u].push_back({v, w});
+            adj[v].push_back({u, w}); // undirected graph
+        }
+        
+        pq.push({0, src});
+        dist[src]=0;
+        
+        while(pq.empty()==false){
+            int w = pq.top().first;
+            int currNode = pq.top().second;
+            pq.pop();
+            vis[currNode] = true;
+            
+            // Most Imp check, it can be ask in interview
+            if(dist[currNode] < w) continue;
+            
+            for(auto nbr: adj[currNode]){
+                int nbrNode = nbr[0];
+                int distToNbr = nbr[1];
+                
+                if(vis[nbrNode]==false && dist[nbrNode]> distToNbr + dist[currNode]){
+                    dist[nbrNode] = distToNbr + dist[currNode];
+                    pq.push({dist[nbrNode], nbrNode});
+                }
+            }
+        }
+        
         return dist;
     }
 };

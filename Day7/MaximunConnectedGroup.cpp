@@ -86,7 +86,7 @@ class Solution {
           }
         } 
     
-        // what if all the cells are 1
+        // what if all the cells are 1 or in step2 after flipping 0 to 1, no connection formed
         for(int i=0;i<n*n;i++){
         //   cout<<ds.size[ds.findUpar(i)]<<" ";
           mx = max (mx,ds.size[ds.findUpar(i)]);

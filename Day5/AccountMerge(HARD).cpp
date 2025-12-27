@@ -6,6 +6,8 @@
 // After merging the accounts, return the accounts in the following format: the first element of each account is the name,
 // and the rest of the elements are emails in sorted order.
 
+//https://leetcode.com/problems/accounts-merge/description/
+
 //User function Template for C++
 class DisjointSet{
     public:
